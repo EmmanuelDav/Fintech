@@ -33,6 +33,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlin.random.Random
+import com.google.android.material.progressindicator.CircularProgressIndicator
 
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -163,7 +164,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
     fun fetchStatement(fragment: View) {
         // Use a modern progress indicator instead of ProgressDialog
-        val progressBar = MaterialProgressIndicator(fragment.context).apply {
+        val progressBar = CircularProgressIndicator(fragment.context).apply {
             isIndeterminate = true
             visibility = View.VISIBLE
         }
@@ -203,7 +204,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
     private fun sendMoney(myBalance: Int, view: View) {
         // Use MaterialProgressIndicator for modern progress indication
-        val progressBar = MaterialProgressIndicator(view.context).apply {
+        val progressBar = CircularProgressIndicator(view.context).apply {
             isIndeterminate = true
             visibility = View.VISIBLE
         }
@@ -265,7 +266,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
                     if (task.isSuccessful) {
                         Toast.makeText(context, "Transaction successful", Toast.LENGTH_SHORT).show()
-                        Navigation.findNavController(view).popBackStack(R.id.homeFragment, false)
+                        Navigation.findNavController(view).popBackStack(R.id.navigation_home, false)
                     } else {
                         Toast.makeText(context, "Transaction failed, please try again.", Toast.LENGTH_SHORT).show()
                     }

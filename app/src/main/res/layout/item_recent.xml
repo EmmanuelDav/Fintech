@@ -1,87 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable
-                name="statement"
-                type="com.cyberiyke.fintech.data.model.Statement" />
 
         <variable
-                name="listener"
-                type="com.cyberiyke.fintech.utils.Interface" />
+            name="statement"
+            type="com.cyberiyke.fintech.data.model.Statement" />
 
-        <variable name="client"
-                type="String"/>
+        <variable
+            name="listener"
+            type="com.cyberiyke.fintech.utils.Interface" />
+
+        <variable
+            name="client"
+            type="String" />
     </data>
 
 
     <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_margin="8dp"
-            android:onClick="@{() ->listener.onItemClick(statement)}"
-            android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:onClick="@{() ->listener.onItemClick(statement)}">
 
         <com.google.android.material.imageview.ShapeableImageView
-                android:layout_width="50dp"
-                android:src="@drawable/send"
-                android:padding="5dp"
-                android:id="@+id/item_image"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentStart="true"
-                app:strokeWidth="4dp"
-                app:strokeColor="@color/grey"
-                android:layout_height="50dp" />
+            android:id="@+id/item_image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:padding="5dp"
+            android:src="@drawable/send"
+            app:strokeColor="@color/grey"
+            app:strokeWidth="4dp" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/item_image"
+            android:orientation="vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/TextAppearance.MaterialComponents.Headline6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_centerVertical="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="center_vertical"
+                android:text="@{statement.client}"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_name"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="5dp"
                 android:layout_toRightOf="@+id/item_image"
-                android:orientation="vertical">
-
-            <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:text="@{statement.client}"
-                    style="@style/TextAppearance.MaterialComponents.Headline6"
-                    android:textColor="@color/black"
-                    android:gravity="center_vertical"
-                    android:textStyle="bold"
-                    android:textSize="18sp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginBottom="5dp" />
-
-            <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
-                    android:text="@{statement.time.toDate().toString()}"
-                    android:layout_below="@+id/item_name"
-                    android:textColor="@color/textGrey"
-                    android:textSize="14sp"
-                    android:layout_toRightOf="@+id/item_image"
-                    android:textStyle="bold"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginBottom="5dp" />
+                android:text="@{statement.time.toDate().toString()}"
+                android:textColor="@color/textGrey"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:text="@{statement.type+` $`+statement.amount}"
-                style="@style/TextAppearance.MaterialComponents.Headline6"
-                android:textColor="@color/black"
-                android:gravity="center_vertical"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:layout_marginTop="10dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp" />
+            style="@style/TextAppearance.MaterialComponents.Headline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="center_vertical"
+            android:text="@{statement.type+` $`+statement.amount}"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 </layout>
