@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.cyberiyke.fintech.ui.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
@@ -100,10 +101,8 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     private fun navigateToVerifyPhoneNumber() {
-        val intent = Intent(context, VerifyPhoneNumber::class.java).apply {
-            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        }
-        context.startActivity(intent)
+        // TODO: Add phone number verification for extra security
+
     }
 
     private fun showToast(message: String) {

@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
 import androidx.lifecycle.ViewModelProvider
+import com.cyberiyke.fintech.databinding.ActivityMainBinding
+import com.cyberiyke.fintech.ui.auth.AuthViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -24,7 +26,8 @@ class SignInActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_in)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+
 
         authViewModel = ViewModelProvider(this).get(AuthViewModel::class.java)
 

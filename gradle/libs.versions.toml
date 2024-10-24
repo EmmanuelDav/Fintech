@@ -21,6 +21,7 @@ coil = "2.4.0"
 hilt = "2.51"
 roomKtx = "2.6.1"
 baselibrary = "3.2.0-alpha11"
+firebaseFirestore = "25.1.1"
 
 
 
@@ -48,6 +49,7 @@ coil = { module = "io.coil-kt:coil", version.ref = "coil" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomKtx" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomKtx" }
 androidx-baselibrary = { group = "androidx.databinding", name = "baseLibrary", version.ref = "baselibrary" }
+firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebaseFirestore" }
 
 
 [plugins]

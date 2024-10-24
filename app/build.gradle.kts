@@ -56,6 +56,7 @@ dependencies {
     //Hilt
     implementation(libs.hilt.android)
     implementation(libs.androidx.baselibrary)
+    implementation(libs.firebase.firestore)
     kapt(libs.hilt.android.compiler)
 
     // ViewModel
