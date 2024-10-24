@@ -3,10 +3,13 @@ package com.cyberiyke.fintech.ui.auth
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.cyberiyke.fintech.databinding.ActivitySignUpBinding
+import com.cyberiyke.fintech.ui.MainActivity
+import com.google.firebase.auth.FirebaseAuth
 
 class SignUpActivity : AppCompatActivity() {
 
@@ -57,8 +60,22 @@ class SignUpActivity : AppCompatActivity() {
             }
 
             if (email.isNotEmpty() && password.isNotEmpty() && name.isNotEmpty() && cpassword.isNotEmpty()) {
-                authViewModel.registerWithEmailAndPassword(email, password, name)
+                authViewModel.registerWithEmailAndPassword(email, password, name, this.binding.root)
             }
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val currentUser = FirebaseAuth.getInstance().currentUser
+
+        if (currentUser != null) {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK // Clear the back stack
+            startActivity(intent)
+            finish()
+        } else {
+            Log.d("MainActivity", "User not logged in")
         }
     }
 }

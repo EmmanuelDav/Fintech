@@ -1,6 +1,7 @@
 package com.cyberiyke.fintech.ui.home
 
 import android.app.Application
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
@@ -37,8 +38,10 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlin.random.Random
 import com.google.android.material.progressindicator.CircularProgressIndicator
+import com.iyke.onlinebanking.utils.Constants.PIN
+import timber.log.Timber
 
- class HomeViewModel(application: Application) : AndroidViewModel(application), UserClickInterface<Users>, StatementClickInterface<Statement> {
+class HomeViewModel(application: Application) : AndroidViewModel(application), UserClickInterface<Users>, StatementClickInterface<Statement> {
 
 
     private val context = getApplication<Application>().applicationContext
@@ -137,26 +140,44 @@ import com.google.android.material.progressindicator.CircularProgressIndicator
     }
 
     private fun verifyAmount(view: View) {
-        val amount = amountAdded.value?.toIntOrNull() ?: run {
-            view.showToast("Invalid amount")
-            return
-        }
+        val db = FirebaseFirestore.getInstance()
+        val docRef = db.collection(USERS).document(firebaseEmail!!)
 
-        CoroutineScope(Dispatchers.Main).launch {
-            try {
-                val userDocRef = db.collection(Constants.USERS).document(firebaseEmail!!)
-                val userDoc = userDocRef.get().await()
-                val balance = userDoc[Constants.BALANCE].toString().toInt()
+        docRef.get()
+            .addOnSuccessListener { document ->
+                val balance = document[BALANCE]?.toString()?.toIntOrNull()
+                val pinExists = document[PIN] != null
+                val amountToAdd = amountAdded.value?.toIntOrNull() ?: 0
 
-                if (balance >= amount) {
-                    showConfirmPinDialog(balance,view)
-                } else {
-                    view.showToast("Insufficient funds")
+                when {
+                    balance == null -> {
+                        Timber.tag("SendMoneyActivity").d("No such document")
+                        Toast.makeText(context, "Documents not found", Toast.LENGTH_SHORT).show()
+                    }
+                    balance < amountToAdd -> {
+                        Toast.makeText(context, "Insufficient funds", Toast.LENGTH_SHORT).show()
+                    }
+                    else -> {
+                        Toast.makeText(context, "Possible", Toast.LENGTH_SHORT).show()
+                        if (pinExists) {
+                            val callBox = ConfirmPinDialog(view.context)
+                            callBox.show()
+                            callBox.setOnDismissListener {
+                                if (callBox.confirmed) {
+                                    sendMoney(balance, view)
+                                }
+                            }
+                        } else {
+                            view.context.startActivity(Intent(context, SetNewPinActivity::class.java))
+                        }
+                    }
                 }
-            } catch (e: Exception) {
-                view.showToast("Balance check failed: ${e.message}")
             }
-        }
+            .addOnFailureListener { exception ->
+                Log.d("SendMoneyActivity", "Get failed with ", exception)
+                Toast.makeText(context, "Balance checking failed", Toast.LENGTH_SHORT).show()
+            }
+
     }
 
     private fun showConfirmPinDialog(balance:Int, view: View) {

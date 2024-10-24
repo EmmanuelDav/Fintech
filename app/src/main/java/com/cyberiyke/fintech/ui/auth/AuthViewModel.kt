@@ -4,16 +4,27 @@ import android.app.Application
 import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.util.Log
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.cyberiyke.fintech.ui.MainActivity
+import com.google.android.material.progressindicator.CircularProgressIndicator
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
 import com.iyke.onlinebanking.utils.Constants
+import com.iyke.onlinebanking.utils.Constants.BALANCE
+import com.iyke.onlinebanking.utils.Constants.EMAIL
+import com.iyke.onlinebanking.utils.Constants.NAME
+import com.iyke.onlinebanking.utils.Constants.PHONE_NUMBER
+import com.iyke.onlinebanking.utils.Constants.PIN
+import com.iyke.onlinebanking.utils.Constants.PREFERENCE
+import com.iyke.onlinebanking.utils.Constants.PROFILE
+import com.iyke.onlinebanking.utils.Constants.USERS
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class AuthViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -35,13 +46,21 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun registerWithEmailAndPassword(email: String, password: String, name: String) {
+    fun registerWithEmailAndPassword(email: String, password: String, name: String, view: View) {
+
+        val progressBar = CircularProgressIndicator(view.context).apply {
+            isIndeterminate = true
+            visibility = View.VISIBLE
+        }
+        (view as? ViewGroup)?.addView(progressBar)
+
         viewModelScope.launch {
             try {
                 showLoading()
-                firebaseAuth.createUserWithEmailAndPassword(email, password).await()
-                saveUserDataToSharedPreferences(email, name, "null")
-                navigateToVerifyPhoneNumber()
+                firebaseAuth.createUserWithEmailAndPassword(email, password).addOnSuccessListener {
+                    saveUserDataToSharedPreferences(email, name, "null")
+                    saveDataToFirebase(progressBar)
+                }
             } catch (e: Exception) {
                 showToast("Registration Failure: ${e.message}")
             } finally {
@@ -68,8 +87,49 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
         context.startActivity(intent)
     }
 
-    private fun navigateToVerifyPhoneNumber() {
-        // TODO: Add phone number verification for extra security
+    private fun saveDataToFirebase(progressIndicator: CircularProgressIndicator) {
+
+        val sh = context.getSharedPreferences(PREFERENCE, MODE_PRIVATE)
+        val email = sh.getString(EMAIL, "")
+        val name = sh.getString(NAME, "")
+        val profilePic = sh.getString(PROFILE, "")
+
+        val userDocument = FirebaseFirestore.getInstance().collection(USERS).document(email!!)
+
+
+        val data = hashMapOf(
+            EMAIL to email,
+            NAME to name,
+            PROFILE to profilePic,
+            PHONE_NUMBER to "null",
+            BALANCE to null,
+            PIN to null
+        )
+
+// Set data and update balance if null, then navigate to MainActivity
+        userDocument.set(data)
+            .addOnSuccessListener {
+                userDocument.get()
+                    .addOnSuccessListener { doc ->
+                        if (doc[BALANCE] == null) {
+                            userDocument.update(BALANCE, 1000)
+                        }
+                        progressIndicator.visibility = View.GONE
+                        // Navigate to MainActivity
+                        Intent(context, MainActivity::class.java).let {
+                            it.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                            context.startActivity(it)
+                        }
+                        Timber.tag("VerifyActivity").d("signInWithCredential:success")
+                    }
+                    .addOnFailureListener {
+                        progressIndicator.visibility = View.GONE
+                        Timber.tag("VerifyActivity").d("Log in failed because ${it.message}")
+                    }
+            }
+            .addOnFailureListener { e ->
+                Timber.tag("TAG").w(e, "Error writing document")
+            }
 
     }
 

@@ -20,9 +20,9 @@ class TransactFragment : Fragment() {
             inflater,
             R.layout.fragment_transact, container, false
         )
-        val mBundle: Bundle = requireArguments()
-        val statement: Statement = mBundle.getParcelable<Statement>("statement")!!
-        v.statement = statement
+        val mBundle: Bundle? = arguments
+        val statement: Statement? = mBundle?.getParcelable("statement")
+        if (statement != null) v.statement = statement
         return v.root
     }
 }

@@ -26,12 +26,14 @@ class SendMoneyFragment : Fragment() {
         v.exitSend.setOnClickListener { findNavController().popBackStack() }
         v.model = userDataViewModel
         v.executePendingBindings()
-        val mBundle: Bundle = requireArguments()
-        val user:Users = mBundle.getParcelable<Users>("User")!!
-        v.data = user
-        val currentUsersList = v.model?.users?.value ?: emptyList() // Get the current list or an empty list
-        val updatedUsersList = currentUsersList + user // Create a new list with the added user
-        v.model?.users?.value = updatedUsersList
+        val mBundle: Bundle? = arguments
+        val user: Users? = mBundle?.getParcelable("User")
+        if (user != null) {
+            v.data = user
+            val currentUsersList = v.model?.users?.value ?: emptyList() // Get the current list or an empty list
+            val updatedUsersList = currentUsersList + user // Create a new list with the added user
+            v.model?.users?.value = updatedUsersList
+        }
         return v.root
     }
 }
