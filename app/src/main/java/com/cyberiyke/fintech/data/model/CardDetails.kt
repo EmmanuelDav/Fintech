@@ -1,4 +1,4 @@
-package com.iyke.onlinebanking.model
+package com.cyberiyke.fintech.data.model
 
 import android.os.Parcelable
 

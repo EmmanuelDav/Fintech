@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.google.gms.google.services)
     alias(libs.plugins.hilt.android)
     id ("kotlin-kapt")
+    id ("kotlin-parcelize")
 
 }
 
@@ -39,6 +40,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        dataBinding = true
     }
 }
 
@@ -57,7 +59,12 @@ dependencies {
     implementation(libs.hilt.android)
     implementation(libs.androidx.baselibrary)
     implementation(libs.firebase.firestore)
+    implementation(libs.androidx.databinding.runtime)
     kapt(libs.hilt.android.compiler)
+
+    //glide
+    implementation (libs.glide)
+
 
     // ViewModel
     implementation(libs.androidx.lifecycle.viewmodel.ktx)

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+                name="statement"
+                type="com.cyberiyke.fintech.data.model.Statement" />
+
+        <variable
+                name="listener"
+                type="com.cyberiyke.fintech.utils.Interface" />
+
+        <variable name="client"
+                type="String"/>
+    </data>
+
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_margin="8dp"
+            android:onClick="@{() ->listener.onItemClick(statement)}"
+            android:layout_height="wrap_content">
+
+        <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="50dp"
+                android:src="@drawable/send"
+                android:padding="5dp"
+                android:id="@+id/item_image"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                app:strokeWidth="4dp"
+                app:strokeColor="@color/grey"
+                android:layout_height="50dp" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/item_image"
+                android:orientation="vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:text="@{statement.client}"
+                    style="@style/TextAppearance.MaterialComponents.Headline6"
+                    android:textColor="@color/black"
+                    android:gravity="center_vertical"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginBottom="5dp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:text="@{statement.time.toDate().toString()}"
+                    android:layout_below="@+id/item_name"
+                    android:textColor="@color/textGrey"
+                    android:textSize="14sp"
+                    android:layout_toRightOf="@+id/item_image"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginBottom="5dp" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:text="@{statement.type+` $`+statement.amount}"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
+                android:textColor="@color/black"
+                android:gravity="center_vertical"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp" />
+
+    </RelativeLayout>
+</layout>
