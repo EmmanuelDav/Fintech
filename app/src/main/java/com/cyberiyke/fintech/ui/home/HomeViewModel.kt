@@ -52,7 +52,7 @@ import com.google.android.material.progressindicator.CircularProgressIndicator
     private val displayName: String? = sharedPreferences.getString(Constants.NAME, "")
 
     val userData = MutableLiveData<Users>()
-    val users = MutableLiveData<List<Users>>()
+    var users = MutableLiveData<List<Users>>()
     val statements = MutableLiveData<List<Statement>>()
     val amountAdded = MutableLiveData<String>()
     val addMoney = MutableLiveData<String>()
@@ -304,10 +304,28 @@ import com.google.android.material.progressindicator.CircularProgressIndicator
          val bundle = Bundle()
          bundle.putParcelable("User", user)
          Navigation.findNavController(sendFragment)
-             .navigate(R.id.action_sentFragment_to_sendMoney2, bundle)
+             .navigate(R.id.action_sentFragment_to_sendMoneyFragment, bundle)
      }
 
      override fun onStatementClick(statement: Statement) {
-         TODO("Not yet implemented")
+         val bundle = Bundle()
+         bundle.putParcelable("statement", statement)
+         Navigation.findNavController(homeFragment)
+             .navigate(R.id.action_navigation_home_to_transactFragment,bundle)
+     }
+
+     fun fetchUsers(view: View) {
+         sendFragment = view
+         val tempArr = ArrayList<Users>()
+         db.collection(USERS).get().addOnSuccessListener { doc ->
+             for (user in doc) {
+                 val user = user.toObject(Users::class.java)
+                 if (user.email != firebaseEmail){
+                     tempArr.add(user)
+                 }
+             }
+             users.value = tempArr
+
+         }.addOnFailureListener { Log.d("VerifyActivity", "Log in failed because ${it.message}") }
      }
  }

@@ -5,12 +5,13 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
+import com.cyberiyke.fintech.BR
 
-class UniversalRecyclerAdapter<T>(@LayoutRes val resource: Int, var data: ArrayList<T>, val listener: Any? = null) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    fun updateData(data: ArrayList<T>){
+class UniversalRecyclerAdapter<T>(@LayoutRes val resource: Int, var data: List<T>, val listener: Any? = null) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    fun updateData(data: List<T>){
         this.data = data
         notifyDataSetChanged()
     }
@@ -33,7 +34,6 @@ class UniversalRecyclerAdapter<T>(@LayoutRes val resource: Int, var data: ArrayL
     inner class MyViewHolder(private val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root) {
         fun setupData(model: Any) {
             binding.setVariable(BR.statement, model)
-            binding.setVariable(BR.card, model)
             binding.setVariable(BR.model, model)
             binding.setVariable(BR.listener, listener)
         }

@@ -48,7 +48,7 @@ class HomeFragment : Fragment() {
 @BindingAdapter(value = ["tools:statement", "tools:layout", "tools:onclick"], requireAll = false)
 fun <T> setHomeAdapter(
     recyclerView: RecyclerView,
-    statement: MutableLiveData<ArrayList<T>>,
+    statement: MutableLiveData<List<T>>,
     @LayoutRes layout: Int = R.layout.item_recent,
     listener: Any
 ) {

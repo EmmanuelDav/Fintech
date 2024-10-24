@@ -29,7 +29,9 @@ class SendMoneyFragment : Fragment() {
         val mBundle: Bundle = requireArguments()
         val user:Users = mBundle.getParcelable<Users>("User")!!
         v.data = user
-        v.model?.users(user)
+        val currentUsersList = v.model?.users?.value ?: emptyList() // Get the current list or an empty list
+        val updatedUsersList = currentUsersList + user // Create a new list with the added user
+        v.model?.users?.value = updatedUsersList
         return v.root
     }
 }

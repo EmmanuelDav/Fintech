@@ -10,7 +10,7 @@
 
         <variable
             name="listener"
-            type="com.cyberiyke.fintech.utils.Interface" />
+            type="com.cyberiyke.fintech.utils.StatementClickInterface" />
 
         <variable
             name="client"
@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:onClick="@{() ->listener.onItemClick(statement)}">
+        android:onClick="@{() ->listener.onStatementClick(statement)}">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/item_image"
