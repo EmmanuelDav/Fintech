@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_margin="40dp"
     android:orientation="vertical"
-    tools:context="com.iyke.onlinebanking.activities.WelcomeActivity">
+    tools:context=".ui.auth.WelcomeActivity">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/welcome"

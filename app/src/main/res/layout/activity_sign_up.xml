@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_margin="20dp"
     android:orientation="vertical"
-    tools:context="com.iyke.onlinebanking.activities.SignUpActivity">
+    tools:context=".ui.auth.SignUpActivity">
 
 
     <com.google.android.material.textview.MaterialTextView
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/welcome"
         android:layout_marginTop="20dp"
-        android:text="Create an account so you can use VPay"
+        android:text="Create an account so you can use VDB Money"
         android:textColor="@color/textGrey"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -89,7 +89,7 @@
             android:textSize="20sp"
             android:textStyle="bold"
             app:passwordToggleEnabled="true"
-            app:startIconDrawable="@drawable/ic_baseline_lock_24"
+            app:startIconDrawable="@drawable/baseline_lock_24"
             app:startIconTint="@color/green">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -110,7 +110,7 @@
             android:textSize="20sp"
             android:textStyle="bold"
             app:passwordToggleEnabled="true"
-            app:startIconDrawable="@drawable/ic_baseline_lock_24"
+            app:startIconDrawable="@drawable/baseline_lock_24"
             app:startIconTint="@color/green">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -147,43 +147,6 @@
             android:textSize="15sp"
             tools:ignore="RtlSymmetry" />
 
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="15dp"
-            android:orientation="horizontal">
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="100dp"
-                android:layout_height="3dp"
-                android:layout_gravity="center_vertical"
-                android:backgroundTint="@color/grey" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="  Or Sign Up with  "
-                android:textSize="18sp" />
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="100dp"
-                android:layout_height="3dp"
-                android:layout_gravity="center_vertical"
-                android:backgroundTint="@color/grey" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/googleLogin"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="50dp"
-            android:background="@drawable/rounded"
-            android:src="@drawable/google_logo" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"

@@ -1,90 +1,58 @@
-package com.iyke.onlinebanking.activities
+package com.cyberiyke.fintech.ui.auth
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
 import androidx.lifecycle.ViewModelProvider
-import com.cyberiyke.fintech.databinding.ActivityMainBinding
-import com.cyberiyke.fintech.ui.auth.AuthViewModel
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.api.ApiException
-import com.iyke.onlinebanking.utils.Constants
-import com.iyke.onlinebanking.R
-import com.iyke.onlinebanking.auth.secrets
-import com.iyke.onlinebanking.viewmodel.AuthViewModel
-import kotlinx.android.synthetic.main.activity_sign_in.*
-import kotlinx.android.synthetic.main.activity_sign_in.emailInput
-import kotlinx.android.synthetic.main.activity_sign_in.passwordInput
+import com.cyberiyke.fintech.databinding.ActivitySignInBinding
 
 class SignInActivity : AppCompatActivity() {
 
     lateinit var authViewModel: AuthViewModel
+    lateinit var binding: ActivitySignInBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivitySignInBinding.inflate(layoutInflater)
 
 
         authViewModel = ViewModelProvider(this).get(AuthViewModel::class.java)
 
-        signUp.setOnClickListener {
+        binding.signUp.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))
 
         }
-        signIn.setOnClickListener {
-            val email = emailInput.text.toString()
-            val password = passwordInput.text.toString()
+        binding.signIn.setOnClickListener {
+            val email = binding.emailInput.text.toString()
+            val password = binding.passwordInput.text.toString()
 
 
             if (email.isEmpty()) {
-                emailInput.error = "Please Enter Email"
-                emailInput.requestFocus()
+                binding.emailInput.error = "Please Enter Email"
+                binding.emailInput.requestFocus()
                 return@setOnClickListener
             }
             if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                emailInput.error = "Please Enter Valid Email"
-                emailInput.requestFocus()
+                binding.emailInput.error = "Please Enter Valid Email"
+               binding.emailInput.requestFocus()
                 return@setOnClickListener
             }
             if (password.isEmpty()) {
-                passwordInput.error = "Please Enter Password"
-                passwordInput.requestFocus()
+                binding.passwordInput.error = "Please Enter Password"
+                binding.passwordInput.requestFocus()
                 return@setOnClickListener
             }
 
 
             if (email.isNotEmpty() && password.isNotEmpty()) {
-                authViewModel.loginWithEmailAndPassword(email, password, this)
+                authViewModel.loginWithEmailAndPassword(email, password)
             }
         }
 
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(secrets.clientId)
-            .requestEmail()
-            .build()
-
-        val googleSignInClient = GoogleSignIn.getClient(this, gso)
-
-
-
-        googleLogin.setOnClickListener {
-            startActivityForResult(googleSignInClient.signInIntent, Constants.RC_SIGN_IN)
-        }
-        forPassword.setOnClickListener {
+        binding.forPassword.setOnClickListener {
             startActivity(Intent(this, ForgottenPasswordActivity::class.java))
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == Constants.RC_SIGN_IN && resultCode == RESULT_OK) {
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-            val account = task.getResult(ApiException::class.java)!!
-            authViewModel.firebaseLogin(account.idToken!!, this)
         }
     }
 }

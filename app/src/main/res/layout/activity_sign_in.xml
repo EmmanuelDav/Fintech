@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_margin="20dp"
     android:orientation="vertical"
-    tools:context="com.iyke.onlinebanking.activities.SignInActivity">
+    tools:context=".ui.auth.SignInActivity">
 
 
     <com.google.android.material.textview.MaterialTextView
