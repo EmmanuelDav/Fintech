@@ -20,6 +20,7 @@ firebaseDatabase = "21.0.0"
 coil = "2.4.0"
 hilt = "2.51"
 roomKtx = "2.6.1"
+baselibrary = "3.2.0-alpha11"
 
 
 
@@ -44,6 +45,9 @@ hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", ve
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutinesCore" }
 coil = { module = "io.coil-kt:coil", version.ref = "coil" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomKtx" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomKtx" }
+androidx-baselibrary = { group = "androidx.databinding", name = "baseLibrary", version.ref = "baselibrary" }
 
 
 [plugins]

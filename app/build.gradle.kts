@@ -48,9 +48,14 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
 
+    //Room
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+
 
     //Hilt
     implementation(libs.hilt.android)
+    implementation(libs.androidx.baselibrary)
     kapt(libs.hilt.android.compiler)
 
     // ViewModel
