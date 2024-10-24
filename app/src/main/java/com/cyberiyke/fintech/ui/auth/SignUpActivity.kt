@@ -18,6 +18,9 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySignUpBinding.inflate(layoutInflater)
 
+        setContentView(binding.root)
+
+
         authViewModel = ViewModelProvider(this)[AuthViewModel::class.java]
 
         binding.login.setOnClickListener {

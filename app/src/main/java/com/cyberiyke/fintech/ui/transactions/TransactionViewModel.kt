@@ -1,10 +1,10 @@
-package com.cyberiyke.fintech.ui.dashboard
+package com.cyberiyke.fintech.ui.transactions
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class DashboardViewModel : ViewModel() {
+class TransactionViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is dashboard Fragment"

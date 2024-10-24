@@ -15,6 +15,7 @@ class WelcomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityWelcomeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         authViewModel = ViewModelProvider(this)[AuthViewModel::class.java]
 
@@ -24,7 +25,6 @@ class WelcomeActivity : AppCompatActivity() {
         binding.login.setOnClickListener {
             startActivity(Intent(this, SignInActivity::class.java))
         }
-
 
     }
 }

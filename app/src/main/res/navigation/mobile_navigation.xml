@@ -13,13 +13,9 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.cyberiyke.fintech.ui.dashboard.DashboardFragment"
+        android:name="com.cyberiyke.fintech.ui.transactions.TransactionFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_transactions" />
 
-    <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.cyberiyke.fintech.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+
 </navigation>
