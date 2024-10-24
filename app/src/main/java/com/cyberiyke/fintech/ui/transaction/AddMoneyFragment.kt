@@ -1,4 +1,4 @@
-package com.cyberiyke.fintech.ui.home
+package com.cyberiyke.fintech.ui.transaction
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.iyke.onlinebanking.R
-import com.iyke.onlinebanking.databinding.FragmentAddMoneyBinding
-import com.iyke.onlinebanking.viewmodel.UserDataViewModel
+import com.cyberiyke.fintech.R
+import com.cyberiyke.fintech.databinding.FragmentAddMoneyBinding
+import com.cyberiyke.fintech.ui.home.HomeViewModel
 
 class AddMoneyFragment : Fragment() {
 
@@ -21,7 +21,7 @@ class AddMoneyFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val v: FragmentAddMoneyBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_money, container, false)
-        userDataViewModel = ViewModelProvider(this).get(UserDataViewModel::class.java)
+        userDataViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         v.exitAddM.setOnClickListener { findNavController().popBackStack() }
         v.model = userDataViewModel
         v.executePendingBindings()

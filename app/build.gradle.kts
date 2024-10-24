@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.hilt.android)
     id ("kotlin-kapt")
     id ("kotlin-parcelize")
+    alias(libs.plugins.google.firebase.crashlytics)
 
 }
 
@@ -54,12 +55,15 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
 
+    implementation (libs.timber)
+
+
 
     //Hilt
     implementation(libs.hilt.android)
-    implementation(libs.androidx.baselibrary)
     implementation(libs.firebase.firestore)
     implementation(libs.androidx.databinding.runtime)
+    implementation(libs.firebase.crashlytics)
     kapt(libs.hilt.android.compiler)
 
     //glide

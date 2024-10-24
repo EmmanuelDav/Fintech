@@ -2,6 +2,7 @@ package com.cyberiyke.fintech.ui.home
 
 import android.app.Application
 import android.content.SharedPreferences
+import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,8 @@ import com.cyberiyke.fintech.ui.dialogs.ConfirmPinDialog
 import com.cyberiyke.fintech.data.model.Statement
 import com.cyberiyke.fintech.data.model.Users
 import com.cyberiyke.fintech.ui.dialogs.ProgressDialog
+import com.cyberiyke.fintech.utils.StatementClickInterface
+import com.cyberiyke.fintech.utils.UserClickInterface
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.firestore.Query
 import com.iyke.onlinebanking.utils.Constants
@@ -35,13 +38,16 @@ import kotlinx.coroutines.tasks.await
 import kotlin.random.Random
 import com.google.android.material.progressindicator.CircularProgressIndicator
 
-class HomeViewModel(application: Application) : AndroidViewModel(application) {
+ class HomeViewModel(application: Application) : AndroidViewModel(application), UserClickInterface<Users>, StatementClickInterface<Statement> {
+
 
     private val context = getApplication<Application>().applicationContext
     private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences(
         Constants.PREFERENCE, AppCompatActivity.MODE_PRIVATE
     )
+     var basicListener: UserClickInterface<Users> = this
+     var statementlistener: StatementClickInterface<Statement> = this
     private val firebaseEmail: String? = sharedPreferences.getString(Constants.EMAIL, "")
     private val displayName: String? = sharedPreferences.getString(Constants.NAME, "")
 
@@ -114,9 +120,9 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
     fun navigateView(view: View) {
         val actionId = when (view.id) {
-            R.id.addFunds -> R.id.action_homeFragment_to_addMoney
-            R.id.sendMoney -> R.id.action_homeFragment_to_sentFragment
-            R.id.see -> R.id.action_homeFragment_to_historyFragment
+            R.id.addFunds -> R.id.action_navigation_home_to_addMoneyFragment
+            R.id.sendMoney -> R.id.action_navigation_home_to_sendMoneyFragment
+            R.id.see -> R.id.action_navigation_home_to_transactFragment
             R.id.confirmAddMoney -> {
                 addFunds(view)
                 return
@@ -143,7 +149,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
                 val balance = userDoc[Constants.BALANCE].toString().toInt()
 
                 if (balance >= amount) {
-                    showConfirmPinDialog(view)
+                    showConfirmPinDialog(balance,view)
                 } else {
                     view.showToast("Insufficient funds")
                 }
@@ -153,11 +159,11 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    private fun showConfirmPinDialog(view: View) {
+    private fun showConfirmPinDialog(balance:Int, view: View) {
         val dialog = ConfirmPinDialog(view.context).apply { show() }
         dialog.setOnDismissListener {
             if (dialog.confirmed) {
-                sendMoney(view)
+                sendMoney(balance,view)
             }
         }
     }
@@ -292,4 +298,16 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     private fun View.showToast(message: String) {
         Toast.makeText(this.context, message, Toast.LENGTH_SHORT).show()
     }
-}
+
+
+     override fun onUserClick(user: Users) {
+         val bundle = Bundle()
+         bundle.putParcelable("User", user)
+         Navigation.findNavController(sendFragment)
+             .navigate(R.id.action_sentFragment_to_sendMoney2, bundle)
+     }
+
+     override fun onStatementClick(statement: Statement) {
+         TODO("Not yet implemented")
+     }
+ }

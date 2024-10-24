@@ -69,7 +69,7 @@
             android:textSize="20sp"
             android:textStyle="bold"
             app:passwordToggleEnabled="true"
-            app:startIconDrawable="@drawable/ic_baseline_lock_24"
+            app:startIconDrawable="@drawable/baseline_lock_24"
             app:startIconTint="@color/green">
 
             <com.google.android.material.textfield.TextInputEditText

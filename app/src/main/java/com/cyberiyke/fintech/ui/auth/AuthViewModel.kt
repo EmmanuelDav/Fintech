@@ -60,38 +60,6 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun firebaseLogin(idToken: String) {
-        viewModelScope.launch {
-            try {
-                showLoading()
-                val credential = GoogleAuthProvider.getCredential(idToken, null)
-                firebaseAuth.signInWithCredential(credential).await()
-                val user = firebaseAuth.currentUser
-                if (user != null) {
-                    val userDoc = FirebaseFirestore.getInstance()
-                        .collection(Constants.USERS)
-                        .document(user.email!!)
-                        .get()
-                        .await()
-
-                    val name = user.displayName ?: "null"
-                    val profileUri = user.photoUrl?.toString() ?: "null"
-                    saveUserDataToSharedPreferences(user.email!!, name, profileUri)
-
-                    if (userDoc.exists()) {
-                        navigateToMainActivity()
-                    } else {
-                        navigateToVerifyPhoneNumber()
-                    }
-                }
-            } catch (e: Exception) {
-                showToast("Login failed: ${e.message}")
-                Log.e("AuthViewModel", "Firebase login failed", e)
-            } finally {
-                hideLoading()
-            }
-        }
-    }
 
     private fun navigateToMainActivity() {
         val intent = Intent(context, MainActivity::class.java).apply {

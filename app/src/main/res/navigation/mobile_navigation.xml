@@ -9,7 +9,29 @@
         android:id="@+id/navigation_home"
         android:name="com.cyberiyke.fintech.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_addMoneyFragment"
+            app:destination="@id/addMoneyFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_sendMoneyFragment"
+            app:destination="@id/sendMoneyFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_transactFragment"
+            app:destination="@id/transactFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addMoneyFragment"
+        android:name="com.cyberiyke.fintech.ui.transaction.AddMoneyFragment"
+        android:label="AddMoneyFragment" />
+    <fragment
+        android:id="@+id/sendMoneyFragment"
+        android:name="com.cyberiyke.fintech.ui.transaction.SendMoneyFragment"
+        android:label="SendMoneyFragment" />
+    <fragment
+        android:id="@+id/transactFragment"
+        android:name="com.cyberiyke.fintech.ui.transaction.TransactFragment"
+        android:label="TransactFragment" />
 
 
 </navigation>
