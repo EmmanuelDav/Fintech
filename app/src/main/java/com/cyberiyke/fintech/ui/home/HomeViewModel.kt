@@ -18,6 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.cyberiyke.fintech.ui.dialogs.ConfirmPinDialog
 import com.cyberiyke.fintech.data.model.Statement
 import com.cyberiyke.fintech.data.model.Users
+import com.cyberiyke.fintech.ui.auth.SetNewPinActivity
 import com.cyberiyke.fintech.ui.dialogs.ProgressDialog
 import com.cyberiyke.fintech.utils.StatementClickInterface
 import com.cyberiyke.fintech.utils.UserClickInterface

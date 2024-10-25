@@ -1,10 +1,10 @@
-## Project Overview
+# Project Overview
 The Fintech Transfer App is built to showcase fundamental skills in Android development, focusing on user authentication, data management, and UI/UX design. The app uses mock data to simulate account management and transfers, allowing users to log in, view accounts, perform transactions, and see past transfers.
 
-## Architecture: MVVM (Model-View-ViewModel)
+# Architecture: MVVM (Model-View-ViewModel)
 The application follows the MVVM architecture to ensure separation of concerns and maintain a clean code structure:
 
-## Architecture: MVVM (Model-View-ViewModel)
+# Architecture: MVVM (Model-View-ViewModel)
 
 The application follows the MVVM architecture to ensure separation of concerns and maintain a clean code structure:
 
@@ -22,6 +22,15 @@ The application follows the MVVM architecture to ensure separation of concerns a
 - **view Binding**: Used to bind the views to the layout
 - **Material design**: Used Modern Material design layouts
 - **Hilts**: Used for dependency Injection
+
+<h2 align="left">ScreenShots</h2>
+<h4 align="start">
+<img src="screenshots/screenshot1.jpeg" width="30%" vspace="10" hspace="10">
+<img src="screenshots/screenshot2.jpeg" width="30%" vspace="10" hspace="10">
+<img src="screenshots/screenshot3.jpeg" width="30%" vspace="10" hspace="10">
+<img src="screenshots/screenshot4.png" width="30%" vspace="10" hspace="10">
+<img src="screenshots/screenshot5.png" width="30%" vspace="10" hspace="10">
+<br>
 
 ## Getting Started
 
