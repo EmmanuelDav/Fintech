@@ -12,7 +12,6 @@
     <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:orientation="vertical"
-            android:background="@color/white"
             android:layout_height="match_parent">
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -42,8 +41,8 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
-                    style="@style/TextAppearance.MaterialComponents.Headline5"/>
-<!--                      android:text="@{statement.client}"/>-->
+                    style="@style/TextAppearance.MaterialComponents.Headline5"
+                      android:text="@{statement.client}"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="0dp"
@@ -51,8 +50,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="end"
                     android:textSize="18sp"
-                    style="@style/TextAppearance.MaterialComponents.Headline5"/>
-<!--                    android:text="@{`$`+statement.amount}"/>-->
+                    style="@style/TextAppearance.MaterialComponents.Headline5"
+                    android:text="@{`$`+statement.amount}"/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -129,8 +128,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="end"
                     android:textSize="18sp"
-                    style="@style/TextAppearance.MaterialComponents.Headline6"/>
-<!--                    android:text="@{statement.message}"/>-->
+                    style="@style/TextAppearance.MaterialComponents.Headline6"
+                    android:text="@{statement.message}"/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -161,8 +160,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="end"
                     style="@style/TextAppearance.MaterialComponents.Headline6"
-                    android:textSize="16sp"/>
-<!--                    android:text="@{statement.client}"/>-->
+                    android:textSize="16sp"
+                    android:text="@{statement.client}"/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

@@ -35,7 +35,6 @@
                 android:text="You are about to send "
                 android:layout_margin="10dp"
                 app:drawableTint="@color/green"
-                android:textColor="@color/textGrey"
                 android:textSize="25sp"
                 style="@style/TextAppearance.MaterialComponents.Headline6"
                 android:gravity="center"
@@ -44,16 +43,13 @@
 
         <com.google.android.material.imageview.ShapeableImageView
                 android:layout_width="80dp"
-                android:src="@drawable/baseline_person_24"
+                android:src="@drawable/boy"
                 android:padding="5dp"
                 app:profileImage="@{data.profileUri}"
                 android:layout_gravity="center"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentStart="true"
-                app:strokeWidth="4dp"
                 android:scaleType="centerCrop"
-                app:strokeColor="@color/white"
-                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Material3.Corner.Top"
                 android:layout_height="80dp" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -83,7 +79,6 @@
                     app:icon="@drawable/baseline_add_24"
                     android:inputType="number"
                     android:text="@={model.amountAdded}"
-                    android:backgroundTint="@color/whiteW"
                     app:iconTint="@color/black"
                     android:textColor="@color/black"
                     android:textAlignment="center"
@@ -116,7 +111,6 @@
                     android:layout_height="100dp"
                     android:layout_gravity="center_horizontal"
                     app:icon="@drawable/baseline_add_24"
-                    android:backgroundTint="@color/white"
                     android:text="@={model.message}"
                     app:iconTint="@color/black"
                     android:textColor="@color/black"

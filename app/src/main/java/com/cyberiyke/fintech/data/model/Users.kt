@@ -28,7 +28,7 @@ class Users(
         @JvmStatic
         fun loadImage(view: ImageView, imageUrl: String?) {
             Glide.with(view.context)
-                .load(imageUrl).error(R.drawable.baseline_person_24).apply(RequestOptions().centerCrop())
+                .load(imageUrl).error(R.drawable.boy).apply(RequestOptions().centerCrop())
                 .into(view)
         }
     }

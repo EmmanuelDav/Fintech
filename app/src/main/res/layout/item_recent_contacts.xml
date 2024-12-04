@@ -18,7 +18,7 @@
 
         <com.google.android.material.imageview.ShapeableImageView
                 android:layout_width="80dp"
-                android:src="@drawable/baseline_person_24"
+                android:src="@drawable/boy"
                 android:padding="5dp"
                 android:id="@+id/item_image"
                 android:layout_alignParentTop="true"

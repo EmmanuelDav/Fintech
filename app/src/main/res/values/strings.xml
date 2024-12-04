@@ -6,4 +6,6 @@
     <string name="description"><![CDATA[We provide our users with accounts in their country of residence and country of origin for personal and business banking needs. You can send money to Nigeria, Ghana & Kenya on VDP MONEY at the best rate.]]></string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

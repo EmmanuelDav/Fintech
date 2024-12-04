@@ -1,4 +1,4 @@
-package com.cyberiyke.fintech.ui.transaction
+package com.iyke.onlinebanking.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,11 +13,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.cyberiyke.fintech.R
-import com.cyberiyke.fintech.databinding.FragmentSentBinding
+import com.cyberiyke.fintech.databinding.FragmentUsersBinding
 import com.cyberiyke.fintech.ui.adapter.UniversalRecyclerAdapter
 import com.cyberiyke.fintech.ui.home.HomeViewModel
 
-class SentFragment : Fragment() {
+class UsersFragment : Fragment() {
 
     var userDataViewModel: HomeViewModel? = null
 
@@ -25,7 +25,7 @@ class SentFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val v: FragmentSentBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_sent, container, false)
+        val v: FragmentUsersBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_users, container, false)
         v.lifecycleOwner = this
         userDataViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         v.exitSend.setOnClickListener { findNavController().popBackStack() }
@@ -37,7 +37,7 @@ class SentFragment : Fragment() {
 }
 
 @BindingAdapter(value = ["tools:data","tools:itemList", "tools:itemListener"], requireAll = false)
-fun <T> setAdapter(recyclerView: RecyclerView, data : MutableLiveData<List<T>>, @LayoutRes listItem : Int = R.layout.item_recent_contacts, itemListener: Any){
+fun <T> setUsersAdapter(recyclerView: RecyclerView, data : MutableLiveData<List<T>>, @LayoutRes listItem : Int = R.layout.item_recent_contacts, itemListener: Any){
     if (recyclerView.adapter == null){
         recyclerView.adapter =  UniversalRecyclerAdapter(listItem, data.value ?: ArrayList(), itemListener)
     }else{

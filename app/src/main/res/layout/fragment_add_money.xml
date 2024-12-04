@@ -33,7 +33,6 @@
             android:layout_margin="10dp"
             android:gravity="center"
             android:text="Add money to balance"
-            android:textColor="@color/textGrey"
             android:textSize="20sp"
             android:textStyle="bold"
             app:drawableTint="@color/green" />
@@ -47,7 +46,6 @@
             android:layout_margin="15dp"
             android:gravity="start"
             android:text="Enter amount"
-            android:textColor="@color/textGrey"
             android:textSize="15sp"
             android:textStyle="bold" />
 
@@ -55,14 +53,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            app:cardBackgroundColor="@color/whiteW"
             app:cardCornerRadius="5dp">
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_gravity="center_horizontal"
-                android:backgroundTint="@color/whiteW"
                 android:hint="Enter Amount"
                 android:inputType="number"
                 android:text="@={model.addMoney}"
@@ -88,7 +84,6 @@
             android:padding="17dp"
             android:text="Confirm"
             android:textAllCaps="false"
-            android:textColor="@color/white"
             android:textSize="15sp"
             tools:ignore="RtlSymmetry" />
 

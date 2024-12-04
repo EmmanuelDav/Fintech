@@ -13,9 +13,7 @@
         <action
             android:id="@+id/action_navigation_home_to_addMoneyFragment"
             app:destination="@id/addMoneyFragment" />
-        <action
-            android:id="@+id/action_navigation_home_to_sendMoneyFragment"
-            app:destination="@id/sendMoneyFragment" />
+
         <action
             android:id="@+id/action_navigation_home_to_transactFragment"
             app:destination="@id/transactFragment" />
@@ -23,11 +21,11 @@
             android:id="@+id/action_navigation_home_self"
             app:destination="@id/navigation_home" />
         <action
-            android:id="@+id/action_navigation_home_to_sentFragment"
-            app:destination="@id/sentFragment" />
-        <action
             android:id="@+id/action_navigation_home_to_transactionList"
             app:destination="@id/transactionList" />
+        <action
+            android:id="@+id/action_navigation_home_to_usersFragment"
+            app:destination="@id/usersFragment" />
     </fragment>
     <fragment
         android:id="@+id/addMoneyFragment"
@@ -41,18 +39,20 @@
         android:id="@+id/transactFragment"
         android:name="com.cyberiyke.fintech.ui.transaction.TransactFragment"
         android:label="TransactFragment" />
-    <fragment
-        android:id="@+id/sentFragment"
-        android:name="com.cyberiyke.fintech.ui.transaction.SentFragment"
-        android:label="SentFragment" >
-        <action
-            android:id="@+id/action_sentFragment_to_sendMoneyFragment"
-            app:destination="@id/sendMoneyFragment" />
-    </fragment>
+
     <fragment
         android:id="@+id/transactionList"
         android:name="com.cyberiyke.fintech.ui.transaction.TransactionList"
         android:label="TransactionList" />
+    <fragment
+        android:id="@+id/usersFragment"
+        android:name="com.iyke.onlinebanking.fragments.UsersFragment"
+        android:label="UsersFragment" >
+
+        <action
+            android:id="@+id/action_usersFragment_to_sendMoneyFragment"
+            app:destination="@id/sendMoneyFragment" />
+    </fragment>
 
 
 </navigation>

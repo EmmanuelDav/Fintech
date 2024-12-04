@@ -43,7 +43,8 @@ import com.google.android.material.progressindicator.CircularProgressIndicator
 import com.iyke.onlinebanking.utils.Constants.PIN
 import timber.log.Timber
 
-class HomeViewModel(application: Application) : AndroidViewModel(application), UserClickInterface<Users>, StatementClickInterface<Statement> {
+class HomeViewModel(application: Application) : AndroidViewModel(application),
+    UserClickInterface<Users>, StatementClickInterface<Statement> {
 
 
     private val context = getApplication<Application>().applicationContext
@@ -126,7 +127,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application), U
     fun navigateView(view: View) {
         val actionId = when (view.id) {
             R.id.addFunds -> R.id.action_navigation_home_to_addMoneyFragment
-            R.id.sendMoney -> R.id.action_navigation_home_to_sendMoneyFragment
+            R.id.sendMoney -> R.id.action_navigation_home_to_usersFragment
             R.id.see -> R.id.action_navigation_home_to_transactionList
             R.id.confirmAddMoney -> {
                 addFunds(view)
@@ -327,8 +328,9 @@ class HomeViewModel(application: Application) : AndroidViewModel(application), U
          val bundle = Bundle()
          bundle.putParcelable("User", user)
          Navigation.findNavController(sendFragment)
-             .navigate(R.id.action_sentFragment_to_sendMoneyFragment, bundle)
+             .navigate(R.id.action_usersFragment_to_sendMoneyFragment, bundle)
      }
+
 
      override fun onStatementClick(statement: Statement) {
          val bundle = Bundle()
@@ -351,14 +353,9 @@ class HomeViewModel(application: Application) : AndroidViewModel(application), U
 
          }.addOnFailureListener { Log.d("VerifyActivity", "Log in failed because ${it.message}") }
      }
-    lateinit var dialog: AlertDialog
 
-    private fun showDialog(){
-        dialog = AlertDialog.Builder(context)
-            .setView(R.layout.load_dialog)
-            .setCancelable(false)
-            .create()
-        dialog.show()
+    fun getUsers(user: Users) {
+        clickedUser = user
     }
  }
 
