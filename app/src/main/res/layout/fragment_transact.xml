@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -22,11 +23,11 @@
                 android:src="@drawable/ic_baseline_chevron_left_24" />
 
 
+
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@color/whiteW"
             android:layout_margin="10dp"
             android:padding="14dp"
             tools:context=".fragments.TransactFragment">
@@ -41,8 +42,8 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
-                    style="@style/TextAppearance.MaterialComponents.Headline5"
-                android:text="@{statement.client}"/>
+                    style="@style/TextAppearance.MaterialComponents.Headline5"/>
+<!--                      android:text="@{statement.client}"/>-->
 
             <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="0dp"
@@ -50,8 +51,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="end"
                     android:textSize="18sp"
-                    style="@style/TextAppearance.MaterialComponents.Headline5"
-                    android:text="@{`$`+statement.amount}"/>
+                    style="@style/TextAppearance.MaterialComponents.Headline5"/>
+<!--                    android:text="@{`$`+statement.amount}"/>-->
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -71,7 +72,6 @@
 
             <com.google.android.material.textview.MaterialTextView
                     android:layout_width="match_parent"
-                    android:text="@{statement.time.toDate().toString()}"
                     android:layout_margin="5dp"
                     android:textSize="18sp"
                     android:layout_height="wrap_content" />
@@ -94,8 +94,9 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
+                android:text="status"
                     style="@style/TextAppearance.MaterialComponents.Caption"
-                    android:text="Status"/>
+                    />
 
             <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="0dp"
@@ -128,8 +129,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="end"
                     android:textSize="18sp"
-                    style="@style/TextAppearance.MaterialComponents.Headline6"
-                    android:text="@{statement.message}"/>
+                    style="@style/TextAppearance.MaterialComponents.Headline6"/>
+<!--                    android:text="@{statement.message}"/>-->
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -160,13 +161,22 @@
                     android:layout_height="wrap_content"
                     android:gravity="end"
                     style="@style/TextAppearance.MaterialComponents.Headline6"
-                    android:textSize="16sp"
-                    android:text="@{statement.client}"/>
+                    android:textSize="16sp"/>
+<!--                    android:text="@{statement.client}"/>-->
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="status"
+            style="@style/TextAppearance.MaterialComponents.Caption"
+            />
     </androidx.appcompat.widget.LinearLayoutCompat>
+
 
 </layout>

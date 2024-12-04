@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
+import com.cyberiyke.fintech.R
 import com.cyberiyke.fintech.databinding.ActivitySignUpBinding
 import com.cyberiyke.fintech.ui.MainActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -16,6 +18,8 @@ class SignUpActivity : AppCompatActivity() {
 
     lateinit var authViewModel: AuthViewModel
     private lateinit var binding: ActivitySignUpBinding
+    lateinit var dialog: AlertDialog
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +27,13 @@ class SignUpActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
+
+
+        setContentView(binding.root)
+        dialog = AlertDialog.Builder(this)
+            .setView(R.layout.load_dialog)
+            .setCancelable(false)
+            .create()
 
         authViewModel = ViewModelProvider(this)[AuthViewModel::class.java]
 

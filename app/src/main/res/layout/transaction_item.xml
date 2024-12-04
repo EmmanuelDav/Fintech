@@ -25,7 +25,7 @@
         android:onClick="@{() ->listener.onStatementClick(statement)}">
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/item_image"
+            android:id="@+id/iitem_image"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentStart="true"
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginTop="5dp"
-            android:layout_toRightOf="@+id/item_image"
+            android:layout_toRightOf="@+id/iitem_image"
             android:orientation="vertical">
 
             <com.google.android.material.textview.MaterialTextView
@@ -57,10 +57,10 @@
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/item_name"
+                android:layout_below="@+id/iitem_name"
                 android:layout_marginStart="20dp"
                 android:layout_marginBottom="5dp"
-                android:layout_toRightOf="@+id/item_image"
+                android:layout_toRightOf="@+id/iitem_image"
                 android:text="@{statement.time.toDate().toString()}"
                 android:textColor="@color/textGrey"
                 android:textSize="14sp"

@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.cyberiyke.fintech.ui.MainActivity
@@ -31,15 +32,17 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
     private val context = getApplication<Application>().applicationContext
     private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
-    fun loginWithEmailAndPassword(email: String, password: String) {
+    fun loginWithEmailAndPassword(email: String, password: String, dialog:AlertDialog) {
         viewModelScope.launch {
             try {
                 showLoading()
                 firebaseAuth.signInWithEmailAndPassword(email, password).await()
                 saveUserDataToSharedPreferences(email, "null", "null")
                 navigateToMainActivity()
+                dialog.hide()
             } catch (e: Exception) {
                 showToast("Login Failure: ${e.message}")
+                dialog.hide()
             } finally {
                 hideLoading()
             }

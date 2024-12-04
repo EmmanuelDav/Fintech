@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_navigation_home_to_sentFragment"
             app:destination="@id/sentFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_transactionList"
+            app:destination="@id/transactionList" />
     </fragment>
     <fragment
         android:id="@+id/addMoneyFragment"
@@ -46,6 +49,10 @@
             android:id="@+id/action_sentFragment_to_sendMoneyFragment"
             app:destination="@id/sendMoneyFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/transactionList"
+        android:name="com.cyberiyke.fintech.ui.transaction.TransactionList"
+        android:label="TransactionList" />
 
 
 </navigation>

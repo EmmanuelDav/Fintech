@@ -4,13 +4,16 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
+import com.cyberiyke.fintech.R
 import com.cyberiyke.fintech.databinding.ActivitySignInBinding
 
 class SignInActivity : AppCompatActivity() {
 
     lateinit var authViewModel: AuthViewModel
     lateinit var binding: ActivitySignInBinding
+    lateinit var dialog: AlertDialog
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,6 +21,11 @@ class SignInActivity : AppCompatActivity() {
         binding = ActivitySignInBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
+         dialog = AlertDialog.Builder(this)
+            .setView(R.layout.load_dialog)
+            .setCancelable(false)
+            .create()
+
 
 
 
@@ -28,6 +36,7 @@ class SignInActivity : AppCompatActivity() {
 
         }
         binding.signIn.setOnClickListener {
+
             val email = binding.emailInput.text.toString()
             val password = binding.passwordInput.text.toString()
 
@@ -50,7 +59,8 @@ class SignInActivity : AppCompatActivity() {
 
 
             if (email.isNotEmpty() && password.isNotEmpty()) {
-                authViewModel.loginWithEmailAndPassword(email, password)
+                dialog.show()
+                authViewModel.loginWithEmailAndPassword(email, password, dialog)
             }
         }
 

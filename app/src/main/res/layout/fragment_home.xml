@@ -183,7 +183,7 @@
                                 android:layout_centerVertical="true"
                                 android:layout_gravity="center_horizontal"
                                 android:layout_margin="5dp"
-                                app:srcCompat="@drawable/send" />
+                                app:srcCompat="@drawable/icon_send_money" />
 
                             <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="wrap_content"
@@ -223,7 +223,7 @@
                                 android:layout_centerVertical="true"
                                 android:layout_gravity="center_horizontal"
                                 android:layout_margin="5dp"
-                                app:srcCompat="@drawable/withdrawal" />
+                                app:srcCompat="@drawable/icon_cashout" />
 
                             <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="wrap_content"
@@ -263,7 +263,7 @@
                                 android:layout_centerVertical="true"
                                 android:layout_gravity="center_horizontal"
                                 android:layout_margin="5dp"
-                                android:src="@drawable/donation" />
+                                android:src="@drawable/icon_donation" />
 
                             <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="wrap_content"
@@ -354,7 +354,7 @@
                                 android:layout_centerVertical="true"
                                 android:layout_gravity="center_horizontal"
                                 android:layout_margin="5dp"
-                                app:srcCompat="@drawable/borrow" />
+                                app:srcCompat="@drawable/icon_lend_money" />
 
                             <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="wrap_content"
@@ -393,7 +393,7 @@
                                 android:layout_centerVertical="true"
                                 android:layout_gravity="center_horizontal"
                                 android:layout_margin="5dp"
-                                app:srcCompat="@drawable/statement" />
+                                app:srcCompat="@drawable/icon_statement" />
 
                             <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="wrap_content"
@@ -433,7 +433,7 @@
                                 android:layout_gravity="center_horizontal"
                                 android:layout_margin="5dp"
                                 android:text=" "
-                                app:srcCompat="@drawable/bill" />
+                                app:srcCompat="@drawable/icon_bill" />
 
                             <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="wrap_content"
@@ -471,7 +471,7 @@
                                 android:layout_centerVertical="true"
                                 android:layout_gravity="center_horizontal"
                                 android:layout_margin="5dp"
-                                app:srcCompat="@drawable/loan" />
+                                app:srcCompat="@drawable/icon_make_payment" />
 
                             <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="wrap_content"

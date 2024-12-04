@@ -22,7 +22,7 @@ class TransactFragment : Fragment() {
         )
         val mBundle: Bundle? = arguments
         val statement: Statement? = mBundle?.getParcelable("statement")
-        if (statement != null) v.statement = statement
+        v.statement = statement
         return v.root
     }
 }

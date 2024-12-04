@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
@@ -126,7 +127,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application), U
         val actionId = when (view.id) {
             R.id.addFunds -> R.id.action_navigation_home_to_addMoneyFragment
             R.id.sendMoney -> R.id.action_navigation_home_to_sendMoneyFragment
-            R.id.see -> R.id.action_navigation_home_to_transactFragment
+            R.id.see -> R.id.action_navigation_home_to_transactionList
             R.id.confirmAddMoney -> {
                 addFunds(view)
                 return
@@ -350,4 +351,14 @@ class HomeViewModel(application: Application) : AndroidViewModel(application), U
 
          }.addOnFailureListener { Log.d("VerifyActivity", "Log in failed because ${it.message}") }
      }
+    lateinit var dialog: AlertDialog
+
+    private fun showDialog(){
+        dialog = AlertDialog.Builder(context)
+            .setView(R.layout.load_dialog)
+            .setCancelable(false)
+            .create()
+        dialog.show()
+    }
  }
+
